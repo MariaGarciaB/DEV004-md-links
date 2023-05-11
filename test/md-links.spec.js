@@ -14,7 +14,7 @@ describe('mdLinks', () => {
   });*/
   //Existe un path¿? (probamos cuando no existe un path)
   it('No existe esta ruta', () => {
-    return mdLinks('/noExistente.md').catch((error) => {
+    return mdLinks('/mariaGracia/noExistente.md').catch((error) => {
     expect(error).toBe('Esta ruta no existe')  
     })
   });

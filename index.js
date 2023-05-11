@@ -1,25 +1,48 @@
 // funcion llamada file exists, donde probamos si el path existe
-import { existsSync } from "fs";
-import path, { isAbsolute, resolve as resolvePath } from "path";
+import { existsSync, statSync } from "fs";
+import { isAbsolute, resolve as resolvePath, extname } from "path";
 
-
-export const mdLinks = (path= 'README.md', options) => {
+//'babel.config.json'
+//'README.md'
+//'test'
+export const mdLinks = (path = 'babel.config.json', options) => {
   //sintaxis nueva promesa
   // resolve y reject son callbacks, para usar posteriormente en las promesas
   return new Promise((resolve, rejects) => {
     //identifica si la ruta existe
     if (existsSync(path)) {
+      console.log("EXISTE UNA RUTA")
       //checar o convertir a un ruta absoluta (si es un archivo o directorio)
       const isPathAbsolute =isAbsolute(path);
-console.log(isPathAbsolute, '******');
+//console.log(isPathAbsolute, '******');
 if(isPathAbsolute === true){
-  console.log("ruta absoluta")
+  console.log("RUTA ABSOLUTA: ",isPathAbsolute, path)
 }else {
-  console.log (resolvePath(path))
+  console.log ("Esta ruta no es absoluta: conversión a ruta absoluta:  ", resolvePath(path))
   //convertir la ruta
+
+// Use statSync() method to store the returned
+// instance into variable named stats
+let stats = statSync(path);
+if(stats.isFile() ===  true){
+  console.log("Es un archivo",  extname( path ));
+  //exname solo la etension del archivo 
+  if(extname( path ) === ".md"){
+    console.log("Es un archivo MD");
+  }else{
+    console.log("Este archivo no contiene MD");
+  }
+ 
+}else{
+  console.log("Por el momento sólo leemos archivos")
+}
+ 
+// Use isFile() method to log the result to screen
+//console.log('is file ? ' + stats.isFile());
 }
 //Aqui continuo para volverla absoluta
     } else {
+      console.log("NO EXISTE UNA RUTA");
       //Si  no existe la ruta, rechaza la promesa
       rejects("Esta ruta no existe");
     }
@@ -27,7 +50,8 @@ if(isPathAbsolute === true){
 };
   
 
-   mdLinks();
+  // mdLinks('C:/Users/HP-1/Desktop/MariaGracia/Proyectos MariaGracia/MD-links/DEV004-md-links/README.md'); absoluta
+  mdLinks();
 
 
 /*export default {
