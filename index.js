@@ -8,14 +8,14 @@ import { runInThisContext } from 'vm';
 //'test'
 //'mari/README.md'
 //'C:/Users/HP-1/Desktop/MariaGracia/Proyectos MariaGracia/MD-links/DEV004-md-links/jest.config.js'
-export const mdLinks = (path = 'README.md', options) => {
+export const mdLinks = (path = 'C:/Users/HP-1/Desktop/MariaGracia/Proyectos MariaGracia/MD-links/DEV004-md-links/jest.config.js', options) => {
   return new Promise((resolve, reject) => {
 //1. EXISTE UNA RUTA ¿?
     const isPath = (existsSync(path));
     if (!isPath){
       console.log('No existe ruta')
     }else
-    console.log('Existe una ruta')
+    //console.log('Existe una ruta')
 //2. ES RELATIVA
 const isPathAbsolute =isAbsolute(path);
 let stats = statSync(path);
@@ -31,7 +31,7 @@ if (!file){
 }
 
 }else{
-  //console.log("RUTA ABSOLUTA: ", isPathAbsolute); 
+  console.log("RUTA ABSOLUTA: ", path); 
   //console.log("RUTA: ", path)
 //3. ES UN ARCHIVO ¿?
 if (!file){
