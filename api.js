@@ -1,23 +1,37 @@
-import { readFile } from "fs";
+import { readFile } from 'node:fs';
 
-//funcion ruta absoluta
-/*const rutaAbsoluta = (mdLinks) => {
-    return console.log(rutaAbsoluta)
-}*/
-// poner aca readFile
-export const readMD = () => {
-    return new Promise((resolve, reject) => {   
+/*export const readMD = () => {
+  return new Promise((resolve, reject) => {   
 //5. LEEMOS EL ARCHIVO 
 fs.readFile(path, function(err, data) {
-  if (err) {
-    return reject (err);
-  }
+if (err) {
+  return reject (err);
+}
 
-  return resolve(data);
+return resolve(data);
 });
 
-  
-    })
+
+  })
 }
+
+readMD()*/
+
+/*fs.readFile('contenido.txt', 'utf8', function(err, data) {
+  if (err) {
+    return console.log(err);
+  }
+
+  console.log(data);
+});*/
+
+
+export const readMD = () => readFile('README.md', 'utf8', (err, data) => {
+  if (err) throw err
+    console.log(" este es el error", err);
+  {
+  console.log(data)
+  }
+}); 
 
 readMD()

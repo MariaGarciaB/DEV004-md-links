@@ -27,7 +27,7 @@ export const mdLinks = (path = "README.md", options) => {
           console.log("ARCHIVO: ", extname(path));
           //4. ES UN ARCHIVO MD ¿?
           if (typeFile === ".md") {
-            console.log(readMD)
+            console.log('leyendo Archivos', readMD)
           }else{
             console.log("Por el momento sólo acepta archivos .md");
           }
@@ -39,7 +39,7 @@ export const mdLinks = (path = "README.md", options) => {
         if (file === true) {
           console.log("ARCHIVO: ", extname(path));
           if (typeFile === ".md") {
-            return readFile
+            console.log('leyendo Archivos', readMD)
           }else{
             console.log("Por el momento sólo acepta archivos .md");
           }
