@@ -1,6 +1,7 @@
 // funcion llamada file exists, donde probamos si el path existe
 import { existsSync, statSync } from "fs";
 import { isAbsolute, resolve as resolvePath, extname } from "path";
+import { readMD } from "./api.js";
 import { runInThisContext } from "vm";
 
 //'babel.config.json'
@@ -25,7 +26,9 @@ export const mdLinks = (path = "README.md", options) => {
         if (file === true) {
           console.log("ARCHIVO: ", extname(path));
           //4. ES UN ARCHIVO MD ¿?
-          if (typeFile !== ".md") {
+          if (typeFile === ".md") {
+            console.log(readMD)
+          }else{
             console.log("Por el momento sólo acepta archivos .md");
           }
         } else {
@@ -35,8 +38,10 @@ export const mdLinks = (path = "README.md", options) => {
         console.log("CONVERSIÓN A RUTA ABSOLUTA:  ", resolvePath(path));
         if (file === true) {
           console.log("ARCHIVO: ", extname(path));
-          if (typeFile !== ".md") {
-            console.log("Sólo puede leer archivos .md");
+          if (typeFile === ".md") {
+            return readFile
+          }else{
+            console.log("Por el momento sólo acepta archivos .md");
           }
         } else {
           console.log("Sólo pueden leerse archivos");
