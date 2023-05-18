@@ -1,5 +1,6 @@
 //const { mdLinks } = require('../index.js').default;
 
+import { readMD } from '../api.js';
 import { mdLinks } from "../index.js"
 
 
@@ -9,7 +10,7 @@ describe('mdLinks', () => {
     console.log('FIX ME!');
   });*/
   //es una promesa mdLinks ¿?
-  it('Debería devolver una promesa', () => {
+  it('Es una Promesa', () => {
     expect(mdLinks()).toBe(typeof Promise);
   });
   //Existe un path¿? (probamos cuando no existe un path)
@@ -19,6 +20,10 @@ describe('mdLinks', () => {
     })
   });
 });
+
+/*it('Es una Promesa', () => {
+  expect(readMD()).toBe(typeof Promise);
+});*/
 
 
 /*const mdLinks = require('../');
