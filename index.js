@@ -40,7 +40,7 @@ export const mdLinks = (ruta) => {
   });
 };
 
-mdLinks("README.md").then(console.log).catch(console.log);
+mdLinks('README.md').then(console.log).catch(console.log);
 // mdLinks('README.md').then(console.log).catch(console.log)
 //'babel.config.json'
 //'README.md'
