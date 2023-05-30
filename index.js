@@ -1,7 +1,7 @@
 import { existsSync, readFile, statSync } from "fs";
 //fs módilo que permite interactuar con archivos del sistema
 import { isAbsolute, resolve as resolvePath, extname } from "path";
-import { findLinks, readMD } from "./api.js";
+import { findLinks, readMD, validate } from "./api.js";
 
 export const mdLinks = (ruta) => {
   //investiga process.argv (detecta lo que vas a escribir en consola) en el CLI tenlo presente
@@ -19,14 +19,15 @@ export const mdLinks = (ruta) => {
         console.log("ARCHIVO: ", extname(ruta));
         //TODO: 4. ES UN ARCHIVO MD ¿?
         if (extname(ruta) === ".md") {
-          // readMD((findLinks(contenido)))
-          readMD(ruta).then((contenido) => resolve(findLinks(contenido, ruta)));
-          // readMD(ruta).then(contenido => {
-          //   const array3props = findLinks(contenido,ruta)
-          //   validate(array3props)
-          //   // resolve(array3props)
-          // });
-          // console.log(readMD(ruta).then( (res) => console.log(res)).catch((err) => console.log(err)));
+          readMD(ruta)
+            .then((contenido) => {
+              findLinks(contenido, ruta);
+              return validate(findLinks(contenido, ruta));
+            })
+            .then((final) => {
+              // console.log(final);
+              resolve(final);
+            });
         } else {
           reject("Por el momento sólo acepta archivos .md");
         }
@@ -34,8 +35,7 @@ export const mdLinks = (ruta) => {
         reject("Por el momento sólo leemos archivos");
       }
     } else {
-      reject("babel.config.json");
-      //return reject("Esta ruta no existe");
+      reject("Esta ruta no existe");
     }
   });
 };
