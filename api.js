@@ -29,39 +29,45 @@ export const findLinks = (contenido, ruta) => {
 };
 
 export const validate = (arr) => {
+  const arrPromesas = arr.map((item) => {
+    console.log(item)
+    return fetch(item.href)
+   
+  })
+  //[p1,p2,p3]
+  //return Promise.allSettled(arrpROMESAS)
   return new Promise((resolve, reject) => {
      console.log(arr);
+     const resultados = [];
+     console.log('>>>>>>>>', resultados);
     arr.forEach((element) => {
       const urlMd = element.href;
-      fetch(urlMd)
-        // .then((res) => {
-        //   if (!res.ok) {
-        //     throw new Error(
-        //       `La petición HTTP falló: ${response.status} ${response.statusText}`
-        //     );
-        //   }
-        //   return res.json();
-        // })
+      return fetch(urlMd)
+        .then((res) => {
+          console.log(`respuesta: ${res.status} ${res.statusText}`)
+          element.status = res.status;
+          element.message = res.statusText;
+          resultados.push(element) 
+          return
+          if (!res.ok) {
+         
+            throw new Error(
+              `La petición HTTP falló: ${res.status} ${res.statusText}`
+            );
+          }
+        })
         // .then((data) => {
         //   resolve(data);
           
         // })
-        // .catch((err) => {
-        //   reject(new Error("La petición Http Falló ***"));
-          // })  //revisa la estructura de respuesta, código de status.... en lugar de los console.log de error es donde llamas al status y el mensaje que quieres mostrar
-
-          .then((res) => {
-            console.log('status: ', res.status); // returns 200
-          // res.blob().then((myBlob) => {
-          //   var objectURL = URL.createObjectURL(myBlob);
-          // httpRequest.src = objectURL;
-          // });
-
-          //   response.status– código HTTP de la respuesta,
-          // response.ok– truesi el estado es 200-299.
+        .catch((err) => {
+          console.log('&&&&&&&&&&', err);
+          reject(new Error("La petición Http Falló ***"));
+          })  
+          
         });
     });
-  });
+  // });
 };
 //TODO: recorrer el array for, foeach, map array
 //const newArray = myMatch.map((links) => ({
@@ -81,8 +87,7 @@ const linksPrueba = [
   },
 ];
 
-validate(linksPrueba);
-// .then(console.log).catch(console.log)
+validate(linksPrueba).then((res) => (console.log(res))).catch((err) => (console.log(err)))
 //https://neoattack.com/proyectos/
 //https://chat.openai.com/c/8983f61a-7478-4d99-8a95-a7e3874340ec
 //   var myImage = document.querySelector('img');
@@ -138,3 +143,18 @@ validate(linksPrueba);
 // * [Array - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/)
 //`
 // console.log(findLinks(ejemploLinks))
+
+
+
+// >>>>>>>>>>>>>>>
+//revisa la estructura de respuesta, código de status.... en lugar de los console.log de error es donde llamas al status y el mensaje que quieres mostrar
+
+          // .then((res) => {
+          //   console.log('status: ', res.status); // returns 200
+          // res.blob().then((myBlob) => {
+          //   var objectURL = URL.createObjectURL(myBlob);
+          // httpRequest.src = objectURL;
+          // });
+
+          //   response.status– código HTTP de la respuesta,
+          // response.ok– truesi el estado es 200-299.
