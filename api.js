@@ -1,9 +1,8 @@
-import axios from "axios";
 import { readFile } from "fs";
 
 export const readMD = (path) => {
   return new Promise((resolve, reject) => {
-    //TODO: 5. LEEMOS EL ARCHIVO
+    // 5. LEEMOS EL ARCHIVO
     readFile(path, "utf8", function (err, data) {
       if (err) {
         return reject(err);
@@ -15,7 +14,7 @@ export const readMD = (path) => {
 
 export const findLinks = (contenido, ruta) => {
   // console.log(contenido);
-  //TODO: 5. LEEMOS LINKS
+  // 6. LEEMOS LINKS
   let regex = /\[([^\]!]+)]\((https:\/\/[^\)]+)\)/gi;
   const myMatch = [...contenido.matchAll(regex)].map((m) => ({
     fyle: ruta,
@@ -41,7 +40,6 @@ export const validate = (arr) => {
             element.message = res.statusText;
             resultados.push(element);
           } else {
-            // console.log('<<<<<<&&&&&&&&&&>>>>>>', response.reason);
             reject(new Error("La petición Http Falló"));
           }
         });
@@ -50,20 +48,8 @@ export const validate = (arr) => {
         
       })
       .catch((err) => {
-        // console.log('&&&&&&&&&&', err);
         reject(new Error("La petición Http Falló ***"));
       });
   });
 };
 
-// const linksPrueba = [
-//   {
-//     fyle: "C:\\Users\\HP-1\\Desktop\\MariaGracia\\Proyectos MariaGracia\\MD-links\\DEV004-md-links\\README.md",
-//     text: "Array.prototype.forEach() - MDN",
-//     href: "https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach",
-//   },
-// ];
-
-// validate(linksPrueba)
-//   .then((res) => console.log(res))
-//   .catch((err) => console.log(err));
