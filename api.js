@@ -43,7 +43,7 @@ export const validate = (arr) => {
             reject(new Error("La petición Http Falló"));
           }
         });
-        console.log(("URL válida", resultados));
+        // console.log(("URL válida", resultados));
         resolve(resultados);
         
       })

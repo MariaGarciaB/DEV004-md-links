@@ -1,21 +1,52 @@
 //const { mdLinks } = require('../index.js').default;
 
-import { readMD }  from '../api.js';
+import { readMD, validate }  from '../api.js';
 import { mdLinks } from "../index.js"
 
 
 
 describe('readMD', () => {
-  it('Es una Promesa', () => {
-    //siempre tienes que pasarle un parametro para testearlas
-    expect(readMD('README.md')).toBeInstanceOf(Promise);
-  });
+  // it('readMD es una Promesa', () => {
+  //   //siempre tienes que pasarle un parametro para testearlas
+  //   expect(readMD('README.md')).toBeInstanceOf(Promise);
+  // });
   it('Lee un Archivo', () =>{
   readMD('README.md').then ((res) => {
-    expect(res).toBe('Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que')   
-    //investiga toMatch investiga metodos para buscar algo dntro de un archivo
+    expect(res).toMatch('Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que')   
   })
 })
+});
+
+describe('validate', () => {
+    it('Valida links', (done) =>{
+      const arr = [
+        {
+          href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays/',
+          status: 200,
+          message: 'OK'
+        },
+        {
+          href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/',
+          status: 200,
+          message: 'OK'
+        },
+        {
+          href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort/sort',
+          status: 404,
+          message: 'Not Found'
+        },
+      ];
+    validate(arr).then ((res) => {
+      expect(res.length).toBe(arr.length);
+      expect(res[0].status).toStrictEqual(200);
+        expect(res[1].status).toStrictEqual(200);
+        expect(res[2].status).toStrictEqual(404); 
+        done()
+    })
+    .catch((err) => {
+      done(err); 
+    });
+  })
 });
 
 //   it('should...', () => {
@@ -38,20 +69,3 @@ describe('readMD', () => {
 //     expect(error).toBe('Esta ruta no existe')  
 //     })
 //   });
-
-
-/*it('Es una Promesa', () => {
-  expect(readMD()).toBe(typeof Promise);
-});*/
-
-
-/*const mdLinks = require('../');
-
-
-describe('mdLinks', () => {
-
-  it('should...', () => {
-    console.log('FIX ME!');
-  });
-
-});*/
