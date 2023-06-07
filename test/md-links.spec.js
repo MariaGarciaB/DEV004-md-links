@@ -1,71 +1,95 @@
 //const { mdLinks } = require('../index.js').default;
 
-import { readMD, validate }  from '../api.js';
-import { mdLinks } from "../index.js"
+import { readMD, findLinks, validate } from "../api.js";
+import { mdLinks } from "../index.js";
 
-
-
-describe('readMD', () => {
-  // it('readMD es una Promesa', () => {
-  //   //siempre tienes que pasarle un parametro para testearlas
-  //   expect(readMD('README.md')).toBeInstanceOf(Promise);
-  // });
-  it('Lee un Archivo', () =>{
-  readMD('README.md').then ((res) => {
-    expect(res).toMatch('Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que')   
+describe('mdLinks', () => {
+  it('Existe un archivo .md', () => {
+    return mdLinks("README.md").then(res => {
+      expect(res).toEqual(expect.anything())
   })
-})
+  .catch(err => {
+    expect(err).toEqual('Sólo acepta archivos .md');;
+});
+  });
 });
 
-describe('validate', () => {
-    it('Valida links', (done) =>{
-      const arr = [
-        {
-          href: 'https://curriculum.laboratoria.la/es/topics/javascript/04-arrays/',
-          status: 200,
-          message: 'OK'
-        },
-        {
-          href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/',
-          status: 200,
-          message: 'OK'
-        },
-        {
-          href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort/sort',
-          status: 404,
-          message: 'Not Found'
-        },
-      ];
-    validate(arr).then ((res) => {
-      expect(res.length).toBe(arr.length);
-      expect(res[0].status).toStrictEqual(200);
-        expect(res[1].status).toStrictEqual(200);
-        expect(res[2].status).toStrictEqual(404); 
-        done()
+describe("readMD", () => {
+  it("Lee un Archivo", () => {
+    readMD("README.md").then((res) => {
+      expect(res).toMatch(
+        "Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que"
+      );
     })
     .catch((err) => {
-      done(err); 
+      expect(err.message).toBe('No esta leyendo archivo .md');
     });
-  })
+  });
 });
 
-//   it('should...', () => {
-//     console.log('FIX ME!');
-//   });
+describe("findLinks", () => {
+  const content = `[Node.js](https://nodejs.org/es/) es un entorno de ejecución para JavaScript
+  construido con el [motor de JavaScript V8 de Chrome](https://developers.google.com/v8/).
+  Esto nos va a permitir ejecutar JavaScript en el entorno del sistema operativo,
+  ya sea tu máquina o un servidor, lo cual nos abre las puertas para poder
+  interactuar con el sistema en sí, archivos, redes, ...`;
+  const route = 'C:/Users/HP-1/Desktop/MariaGracia/Proyectos MariaGracia/MD-links/DEV004-md-links/README.md';
+  const links = 
+  [
+    {
+    fyle: 'C:/Users/HP-1/Desktop/MariaGracia/Proyectos MariaGracia/MD-links/DEV004-md-links/README.md',
+    text: 'Node.js',
+    href: 'https://nodejs.org/es/',
+},
+{
+  fyle: 'C:/Users/HP-1/Desktop/MariaGracia/Proyectos MariaGracia/MD-links/DEV004-md-links/README.md',
+  text: 'motor de JavaScript V8 de Chrome',
+  href: 'https://developers.google.com/v8/',
+}];
+  it("Encuentra Links en un Documento", () => {
+    expect(findLinks(content, route)).toEqual(links);
+  });
+  it("No encuentra enlaces en un documento", () => {
+    expect(findLinks('', route)).toEqual([]);// o expect(findLinks('', route)).toHaveLength(0)
+  });
+});
+
+describe("validate", () => {
+  const arr = [
+    {
+      href: "https://curriculum.laboratoria.la/es/topics/javascript/04-arrays/",
+    },
+    {
+      href: "https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/",
+    },
+    {
+      href: "https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort/sort",
+    },
+  ];
+  it("Valida links", (done) => {
+    validate(arr).then((res) => {
+      expect(res.length).toBe(arr.length);
+      expect(res[0].status).toStrictEqual(200);
+      expect(res[1].status).toStrictEqual(200);
+      expect(res[2].status).toStrictEqual(404);
+      done();
+    });
+  });
+});
 
 // });
 //el reject lo evaluas con el catch expect re catch... intenta try catch
-//un texto y te bote el arreglo de objeto 
-// pon un ejemplo con esto backtick esto para extraer links 
+//un texto y te bote el arreglo de objeto
+// pon un ejemplo con esto backtick esto para extraer links
 // `[
 //   fyle: 'C:\\Users\\HP-1\\Desktop\\MariaGracia\\Proyectos MariaGracia\\MD-links\\DEV004-md-links\\README.md',
 // text: 'Array.prototype.map() - MDN',
 // href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/map'
 // ]`
 
-  //Existe un path¿? (probamos cuando no existe un path)
+//Existe un path¿? (probamos cuando no existe un path)
 //   it('No existe esta ruta', () => {
 //     return readFile('/mariaGracia/noExistente.md').catch((error) => {
-//     expect(error).toBe('Esta ruta no existe')  
+//     expect(error).toBe('Esta ruta no existe')
 //     })
 //   });

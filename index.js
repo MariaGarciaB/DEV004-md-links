@@ -1,6 +1,6 @@
 import { existsSync, statSync } from "fs";
 import { isAbsolute, resolve as resolvePath, extname } from "path";
-import { findLinks, readMD, validate } from "./api.js";
+import { readMD, findLinks, validate } from "./api.js";
 
 export const mdLinks = (ruta) => {
   return new Promise((resolve, reject) => {
@@ -19,7 +19,7 @@ export const mdLinks = (ruta) => {
         if (extname(ruta) === ".md") {
           readMD(ruta)
             .then((contenido) => {
-              return validate(findLinks(contenido, ruta));
+              resolve(validate(findLinks(contenido, ruta)));
             })
         } else {
           reject("Por el momento sólo acepta archivos .md");
