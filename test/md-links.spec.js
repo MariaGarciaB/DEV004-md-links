@@ -1,5 +1,3 @@
-//const { mdLinks } = require('../index.js').default;
-
 import { readMD, findLinks, validate } from "../api.js";
 import { mdLinks } from "../index.js";
 
@@ -53,7 +51,7 @@ describe("findLinks", () => {
     expect(findLinks('', route)).toEqual([]);// o expect(findLinks('', route)).toHaveLength(0)
   });
 });
-
+//ver reporte de brach ... archivo index.html en carpeta coverage
 describe("validate", () => {
   const arr = [
     {
@@ -77,19 +75,3 @@ describe("validate", () => {
   });
 });
 
-// });
-//el reject lo evaluas con el catch expect re catch... intenta try catch
-//un texto y te bote el arreglo de objeto
-// pon un ejemplo con esto backtick esto para extraer links
-// `[
-//   fyle: 'C:\\Users\\HP-1\\Desktop\\MariaGracia\\Proyectos MariaGracia\\MD-links\\DEV004-md-links\\README.md',
-// text: 'Array.prototype.map() - MDN',
-// href: 'https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/map'
-// ]`
-
-//Existe un path¿? (probamos cuando no existe un path)
-//   it('No existe esta ruta', () => {
-//     return readFile('/mariaGracia/noExistente.md').catch((error) => {
-//     expect(error).toBe('Esta ruta no existe')
-//     })
-//   });
