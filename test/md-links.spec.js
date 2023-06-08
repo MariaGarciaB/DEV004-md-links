@@ -6,12 +6,22 @@ describe('mdLinks', () => {
     return mdLinks("README.md").then(res => {
       expect(res).toEqual(expect.anything())
   })
+//   .catch(err => {
+//     mdLinks("babel.config.json")
+//     expect(err.message).toEqual('Sólo acepta archivos .md');;
+// });
+  });
+});
+describe('mdLinks', () => {
+  it('No es un archivo .md', () => {
+    return mdLinks("babel.config.json")
   .catch(err => {
-    expect(err).toEqual('Sólo acepta archivos .md');;
+    expect(err).toBe('Sólo acepta archivos .md');;
 });
   });
 });
-
+//caso que no tenga .md ej .json 
+//cada branch son os if
 describe("readMD", () => {
   it("Lee un Archivo", () => {
     readMD("README.md").then((res) => {
@@ -65,6 +75,8 @@ describe("validate", () => {
     },
   ];
   it("Valida links", (done) => {
+    //Ser mas específica en mis it, caso lógico o demasiado extraordinario, cuando falla me avisa de algo significativo (de que me protegio
+    //condiciones con 404 o 200
     validate(arr).then((res) => {
       expect(res.length).toBe(arr.length);
       expect(res[0].status).toStrictEqual(200);
@@ -78,4 +90,6 @@ describe("validate", () => {
     })
   });
 });
+
+//evaluar los casos cuando rechaza en index.
 

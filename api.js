@@ -8,6 +8,7 @@ export const readMD = (path) => {
         return reject(err);
       }
       return resolve(data);
+      //fs/promises
     });
   });
 };
@@ -47,10 +48,7 @@ export const validate = (arr) => {
         // console.log(("URL válida", resultados));
         resolve(resultados);
         
-      })
-      .catch((err) => {
-        reject(new Error("La petición Http Falló ***"));
+      })//No trabaja con catch PromiseAllSettle
       });
-  });
 };
 

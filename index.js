@@ -20,10 +20,11 @@ export const mdLinks = (ruta, options) => {
         if (extname(ruta) === ".md") {
           readMD(ruta)
             .then((contenido) => {
-              if(options.validate)//options === --validate
-              {
-                resolve(validate(findLinks(contenido, ruta)));
-              }
+              resolve(validate(findLinks(contenido, ruta)));
+              // if(options.validate)//options === --validate
+              // {
+                
+              // }
             })
         } else {
           reject("Por el momento sólo acepta archivos .md");
