@@ -2,7 +2,8 @@ import { existsSync, statSync } from "fs";
 import { isAbsolute, resolve as resolvePath, extname } from "path";
 import { readMD, findLinks, validate } from "./api.js";
 
-export const mdLinks = (ruta) => {
+export const mdLinks = (ruta, options) => {
+  console.log('****', options);
   return new Promise((resolve, reject) => {
     // 1. IDENTIFICA SI EXISTE UNA RUTA
     if (existsSync(ruta) === true) {
@@ -19,7 +20,10 @@ export const mdLinks = (ruta) => {
         if (extname(ruta) === ".md") {
           readMD(ruta)
             .then((contenido) => {
-              resolve(validate(findLinks(contenido, ruta)));
+              if(options.validate)//options === --validate
+              {
+                resolve(validate(findLinks(contenido, ruta)));
+              }
             })
         } else {
           reject("Por el momento sólo acepta archivos .md");
@@ -33,7 +37,7 @@ export const mdLinks = (ruta) => {
   });
 };
 
-mdLinks('README.md').then(console.log).catch(console.log);
+// mdLinks('README.md').then(console.log).catch(console.log);
 //'babel.config.json'
 //'README.md'
 //'test'
