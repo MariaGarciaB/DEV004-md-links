@@ -51,7 +51,7 @@ describe("findLinks", () => {
     expect(findLinks('', route)).toEqual([]);// o expect(findLinks('', route)).toHaveLength(0)
   });
 });
-//ver reporte de brach ... archivo index.html en carpeta coverage
+
 describe("validate", () => {
   const arr = [
     {
@@ -71,7 +71,11 @@ describe("validate", () => {
       expect(res[1].status).toStrictEqual(200);
       expect(res[2].status).toStrictEqual(404);
       done();
-    });
+    })
+    .catch((err) => {
+      expect(err.message).toBe('Links no válidos');
+      done(); 
+    })
   });
 });
 

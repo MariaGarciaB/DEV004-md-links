@@ -39,9 +39,10 @@ export const validate = (arr) => {
             element.status = res.status;
             element.message = res.statusText;
             resultados.push(element);
-          } else {
-            reject(new Error("La petición Http Falló"));
           }
+          //  else {
+          //   reject(new Error("La petición Http Falló"));
+          // }
         });
         // console.log(("URL válida", resultados));
         resolve(resultados);
