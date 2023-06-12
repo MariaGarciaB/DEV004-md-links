@@ -8,13 +8,11 @@ export const readMD = (path) => {
         return reject(err);
       }
       return resolve(data);
-      //fs/promises
     });
   });
 };
 
 export const findLinks = (contenido, ruta) => {
-  // console.log(contenido);
   // 6. LEEMOS LINKS
   let regex = /\[([^\]!]+)]\((https:\/\/[^\)]+)\)/gi;
   const myMatch = [...contenido.matchAll(regex)].map((m) => ({

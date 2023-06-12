@@ -3,12 +3,11 @@ import { isAbsolute, resolve as resolvePath, extname } from "path";
 import { readMD, findLinks, validate } from "./api.js";
 
 export const mdLinks = (ruta, options) => {
-  console.log('****', options);
   return new Promise((resolve, reject) => {
     // 1. IDENTIFICA SI EXISTE UNA RUTA
     if (existsSync(ruta) === true) {
       console.log("RUTA EXISTENTE");
-      // 2. LA RUTA ES ABSOLUTA ¿? Extra (si es un archivo o directorio)
+      // 2. LA RUTA ES ABSOLUTA 
       if (!isAbsolute(ruta)) {
         ruta = resolvePath(ruta);
       }
@@ -18,14 +17,9 @@ export const mdLinks = (ruta, options) => {
         console.log("ARCHIVO: ", extname(ruta));
         //TODO: 4. ES UN ARCHIVO MD ¿?
         if (extname(ruta) === ".md") {
-          readMD(ruta)
-            .then((contenido) => {
+          readMD(ruta).then((contenido) => {
               resolve(validate(findLinks(contenido, ruta)));
-              // if(options.validate)//options === --validate
-              // {
-                
-              // }
-            })
+          });
         } else {
           reject("Por el momento sólo acepta archivos .md");
         }
@@ -39,8 +33,3 @@ export const mdLinks = (ruta, options) => {
 };
 
 // mdLinks('README.md').then(console.log).catch(console.log);
-//'babel.config.json'
-//'README.md'
-//'test'
-//'mari/README.md'
-//'C:/Users/HP-1/Desktop/MariaGracia/Proyectos MariaGracia/MD-links/DEV004-md-links/jest.config.js'
