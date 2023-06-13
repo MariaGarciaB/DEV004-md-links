@@ -6,7 +6,7 @@ export const mdLinks = (ruta, options) => {
   return new Promise((resolve, reject) => {
     // 1. IDENTIFICA SI EXISTE UNA RUTA
     if (existsSync(ruta) === true) {
-      console.log("RUTA EXISTENTE");
+      // console.log("RUTA EXISTENTE");
       // 2. LA RUTA ES ABSOLUTA 
       if (!isAbsolute(ruta)) {
         ruta = resolvePath(ruta);
@@ -14,7 +14,7 @@ export const mdLinks = (ruta, options) => {
       // 3. ES UNA ARCHIVO ¿?
       let stats = statSync(ruta);
       if (stats.isFile() === true) {
-        console.log("ARCHIVO: ", extname(ruta));
+        // console.log("ARCHIVO: ", extname(ruta));
         //TODO: 4. ES UN ARCHIVO MD ¿?
         if (extname(ruta) === ".md") {
           readMD(ruta).then((contenido) => {
