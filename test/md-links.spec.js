@@ -14,14 +14,10 @@ describe('mdLinks', () => {
 });
 describe('mdLinks', () => {
   it('No es un archivo .md', () => {
-    return mdLinks("babel.config.json")
-  .catch(err => {
-    expect(err).toBe('Sólo acepta archivos .md');;
-});
+    const fileName = "babel.config.json";
+    return expect(mdLinks(fileName)).rejects.toEqual('Sólo acepta archivos .md');
   });
 });
-//caso que no tenga .md ej .json 
-//cada branch son os if
 describe("readMD", () => {
   it("Lee un Archivo", () => {
     readMD("README.md").then((res) => {
