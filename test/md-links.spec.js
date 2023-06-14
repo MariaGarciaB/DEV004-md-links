@@ -6,16 +6,12 @@ describe('mdLinks', () => {
     return mdLinks("README.md").then(res => {
       expect(res).toEqual(expect.anything())
   })
-//   .catch(err => {
-//     mdLinks("babel.config.json")
-//     expect(err.message).toEqual('Sólo acepta archivos .md');;
-// });
   });
 });
 describe('mdLinks', () => {
   it('No es un archivo .md', () => {
     const fileName = "babel.config.json";
-    return expect(mdLinks(fileName)).rejects.toEqual('Sólo acepta archivos .md');
+    return expect(mdLinks(fileName)).toBe('Sólo acepta archivos .md');
   });
 });
 describe("readMD", () => {
@@ -87,5 +83,6 @@ describe("validate", () => {
   });
 });
 
-//evaluar los casos cuando rechaza en index.
+//evaluar caso en donde una ruta no exista
+//evaluar caso en donde no sea un archivo 
 

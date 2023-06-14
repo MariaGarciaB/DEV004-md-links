@@ -39,14 +39,10 @@ export const validate = (arr) => {
             element.message = res.statusText;
             resultados.push(element);
           }
-          //  else {
-          //   reject(new Error("La petición Http Falló"));
-          // }
         });
-        // console.log(("URL válida", resultados));
         resolve(resultados);
         
-      })//No trabaja con catch PromiseAllSettle
+      })
       });
 };
 
