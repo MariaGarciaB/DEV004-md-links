@@ -9,9 +9,10 @@ describe('mdLinks', () => {
   });
 });
 describe('mdLinks', () => {
-  it('No es un archivo .md', () => {
-    const fileName = "babel.config.json";
-    return expect(mdLinks(fileName)).toBe('Sólo acepta archivos .md');
+  it('No existe un archivo .md', () => {
+    return mdLinks("babel.config.json").catch(res => {
+      expect(res).toEqual("Por el momento sólo acepta archivos .md")
+  })
   });
 });
 describe("readMD", () => {

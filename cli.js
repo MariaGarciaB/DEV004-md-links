@@ -1,5 +1,6 @@
 import { argv } from "node:process";
 import { mdLinks } from "./index.js";
+import chalk from 'chalk';
 
 export const optionsCli = () => {
   const isValidate = argv.includes("--validate");
@@ -12,17 +13,17 @@ export const optionsCli = () => {
   const ruta = argv[2];
   const options = { validate: isValidate, stats: isStats, combo: isBreakLinks };
   mdLinks(ruta, options).then((res) => {
-    const totalLiks = res.length;
+    const totalLinks = res.length;
     const uniqueLinks = [...new Set(res.map((link) => link.href))].length;
     const breakLinks = res.filter((res) => res.status >= 400).length;
     if (isValidate && !isStats) {
       console.log(res);
     } else if (isStats && !isValidate) {
-      console.log(`${"Total: " + totalLiks}\n${"Unique: " + uniqueLinks}`);
+      console.log(`${"Total: " + totalLinks}\n${"Unique: " + uniqueLinks}`);
     } else if (options.combo) {
       console.log(
-        `${"Total: " + totalLiks}\n${"Unique: " + uniqueLinks}\n${
-          "Broken: " + breakLinks
+        `${chalk.yellow("Total: ") + chalk.yellow(totalLinks)}\n${chalk.green("Unique: ") + chalk.green(uniqueLinks)}\n${
+          chalk.red("Broken: ") + chalk.red(breakLinks)
         }`
       );
     }else
@@ -37,4 +38,3 @@ export const optionsCli = () => {
 };
 optionsCli();
 
-//versión de chalk chalk 4.1.2 npm install react@16.14.0
