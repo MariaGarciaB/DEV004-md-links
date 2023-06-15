@@ -44,7 +44,7 @@ Finalmente implementado una interfaz de línea de comandos (CLI). Los usuarios p
 ### Resultado de comandos
 --validate
 
-![Validate](validate.JPEG)
+![Validate](C:/Users/HP-1/Desktop/MariaGracia/Proyectos MariaGracia/MD-links/DEV004-md-links/stats-validate.JPEG)
 
 --stats
 
