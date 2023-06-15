@@ -5,7 +5,6 @@
 * [1. Sobre el proyecto](#1-sobre-el-proyecto)
 * [2. Péambulo](#2-preámbulo)
 * [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
-* [4. Instalaciones](#4-instalaciones)
 
 ***
 
