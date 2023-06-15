@@ -40,16 +40,30 @@ Finalmente implementado una interfaz de línea de comandos (CLI). Los usuarios p
 -- cualquie error   Da a conocer al usuario que comandos utilizar para obtener lo que desea
 
 ### Resultado de comandos
+--validate
 
+![Validate](validate.JPEG)
 
+--stats
+
+![stats](stats.JPEG)
+
+--validate --stats
+
+![validate-stats](validate-stats.JPEG)
+
+--stats --validate
+
+![stats-validate](stats-validate.JPEG)
 
 ### Estructura de proyecto
 
+#####
 
 
 ### Test
 
-
+![test-jest](testJest.JPEG)
 
 ## 2. Preámbulo
 
@@ -96,7 +110,6 @@ Los objetivos de aprendizaje trabajados en este proyecto
 - [ ] **Callbacks**
 
 - [ ] **Promesas**
-
  
 - [ ] **Pruebas unitarias (unit tests)**
 
