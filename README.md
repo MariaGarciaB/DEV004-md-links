@@ -11,7 +11,7 @@
 
 ## 1. Sobre el proyecto
 
-Este proyecto Markdown ofrece a los usuarios una forma eficiente de trabajar con enlaces en sus archivos .md. Mediante el uso de la consola y Node.js, los usuarios pueden acceder a funciones como la validación de enlaces con el comando --validate, obtener estadísticas generales con el comando --stats y identificar enlaces rotos con el comando --broken. Estas características proporcionan a los usuarios la capacidad de garantizar la calidad y funcionalidad de los enlaces en sus archivos Markdown, mejorando así su experiencia y productividad.
+Este proyecto Markdown ofrece a los usuarios una forma eficiente de trabajar con enlaces en sus archivos .md. Mediante el uso de la consola y Node.js, los usuarios pueden acceder a funciones como la validación de enlaces con el comando --validate, obtener estadísticas generales con el comando --stats y identificar enlaces rotos con el comando --broken. Estas características proporcionan a los usuarios la capacidad de garantizar la calidad y funcionalidad de los enlaces en sus archivos Markdown.
 
 
 ### Desarrollo de Proyecto
@@ -111,7 +111,6 @@ Prueba fallida: Se espera que la función devuelva un arreglo vacío si no se en
 Valida el estado de los enlaces:
 Prueba exitosa: Se espera que la función validate realice una solicitud HTTP para cada enlace especificado y devuelva un arreglo con el estado de cada enlace, representado por su código de respuesta (200 para enlaces válidos, 404 para enlaces rotos, etc.).
 Prueba fallida: Se espera que la función lance un error con el mensaje "Links no válidos" si ocurre algún problema al realizar las solicitudes HTTP.
-Espero que esta lista te sea útil para comprender y seguir las evaluaciones realizadas en el código. Si tienes alguna otra pregunta, no dudes en hacerla.
 
 
 ## 2. Preámbulo
