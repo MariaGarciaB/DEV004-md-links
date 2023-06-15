@@ -82,6 +82,3 @@ describe("validate", () => {
   });
 });
 
-//evaluar caso en donde una ruta no exista
-//evaluar caso en donde no sea un archivo 
-

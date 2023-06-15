@@ -23,6 +23,7 @@ export const findLinks = (contenido, ruta) => {
   return myMatch;
 };
 
+//7. REALIZO PETICIÓN HTTP, MOSTRANDO STATUS Y MESSAGE
 export const validate = (arr) => {
   const arrPromesas = arr.map((item) => {
     return fetch(item.href);

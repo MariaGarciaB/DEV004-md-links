@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { argv } from "node:process";
 import { mdLinks } from "./index.js";
 import chalk from 'chalk';

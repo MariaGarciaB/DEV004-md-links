@@ -29,5 +29,3 @@ export const mdLinks = (ruta, options) => {
     }
   });
 };
-
-// mdLinks('README.md').then(console.log).catch(console.log);
