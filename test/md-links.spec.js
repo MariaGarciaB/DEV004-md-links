@@ -16,7 +16,7 @@ describe('mdLinks', () => {
   });
 });
 describe("readMD", () => {
-  it("Lee un Archivo", () => {
+  it("Lee archivos .md", () => {
     readMD("README.md").then((res) => {
       expect(res).toMatch(
         "Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que"
@@ -67,9 +67,7 @@ describe("validate", () => {
       href: "https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort/sort",
     },
   ];
-  it("Valida links", (done) => {
-    //Ser mas específica en mis it, caso lógico o demasiado extraordinario, cuando falla me avisa de algo significativo (de que me protegio
-    //condiciones con 404 o 200
+  it("Valida el status de enlaces", (done) => {
     validate(arr).then((res) => {
       expect(res.length).toBe(arr.length);
       expect(res[0].status).toStrictEqual(200);

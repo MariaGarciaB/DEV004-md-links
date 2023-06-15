@@ -19,7 +19,7 @@ export const optionsCli = () => {
     if (isValidate && !isStats) {
       console.log(res);
     } else if (isStats && !isValidate) {
-      console.log(`${"Total: " + totalLinks}\n${"Unique: " + uniqueLinks}`);
+      console.log(`${chalk.yellow("Total: ") + chalk.yellow(totalLinks)}\n${chalk.green("Unique: ") + chalk.green(uniqueLinks)}`);
     } else if (options.combo) {
       console.log(
         `${chalk.yellow("Total: ") + chalk.yellow(totalLinks)}\n${chalk.green("Unique: ") + chalk.green(uniqueLinks)}\n${
@@ -30,8 +30,9 @@ export const optionsCli = () => {
     {
       console.log(
         `${"Opciones para revisar links y estadísticas de archivos .md:"}\n${
-          "--validate (conocer links)"}\n${"--stats (Total de links y unicos)"}\n${
-          "--validate --stats o --stats --validate (links archivo, links únicos y links rotos)"}`
+          "--validate \t \t Conocer links"}\n${"--stats \t \t Total de links y unicos"}\n${
+          "--validate --stats \t Links archivo, links únicos y links rotos"}\n${
+            "--stats --validate \t Links archivo, links únicos y links rotos"}`
       );
     }
   });
