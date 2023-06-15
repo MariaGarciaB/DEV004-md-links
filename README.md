@@ -44,19 +44,19 @@ Finalmente implementado una interfaz de línea de comandos (CLI). Los usuarios p
 ### Resultado de comandos
 --validate
 
-![Validate](C:/Users/HP-1/Desktop/MariaGracia/Proyectos MariaGracia/MD-links/DEV004-md-links/stats-validate.JPEG)
+![Validate](validate.JPG)
 
 --stats
 
-![stats](stats.JPEG)
+![stats](stats.JPG)
 
 --validate --stats
 
-![validate-stats](validate-stats.JPEG)
+![validate-stats](validate-stats.JPG)
 
 --stats --validate
 
-![stats-validate](stats-validate.JPEG)
+![stats-validate](stats-validate.JPG)
 
 
 ### Estructura de proyecto
@@ -90,7 +90,7 @@ Existen tres opciones disponibles:
 
 ### Test
 
-![test-jest](testJest.JPEG)
+![test-jest](testJest.JPG)
 
 ##### Evaluación de la función mdLinks:
 Verifica si existe un archivo .md:
